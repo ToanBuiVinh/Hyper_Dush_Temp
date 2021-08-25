@@ -9,6 +9,7 @@ STM32F1, HAL, MQTT, Web
 + Arduino IDE -> Sketch -> Include Library -> Add .Zip library -> Thêm thư viện ở trên vào.
 - Cài đặt bản tin JSON:
 + Arduino IDE -> Sketch -> Include Library -> Library Manager -> Chọn ArduinoJson by Benoit Blanchon.
+
 2.STM32-LCD: (Work in Windows) ( Sử dụng Keil C v5)
 - Kiểm tra device: STM32F103C8
 - Sơ đồ cắm chân:
@@ -19,6 +20,7 @@ STM32F1, HAL, MQTT, Web
 + A6: Led - Dust
 + B6: I2C_SCL
 + B7: I2C_SDA
+
 3.Nodejs: (Work in Ubuntu) ( Sử dụng VS Code)
 - Cài đặt thư viện:
 + Terminal: npm install <gói sử dụng> ( các gói sử dụng trong file package.json phần dependencies)
