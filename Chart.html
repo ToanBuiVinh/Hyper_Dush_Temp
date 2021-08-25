@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chart_Hyperlogy</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+  <script type="text/javascript" language="javascript">
+    var max, at_OK;
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
+        // Create a client instance
+        var client = new Paho.MQTT.Client("broker.hivemq.com", 8000, makeid());
+
+        // set callback handlers
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+
+        var options = {
+            useSSL: false,
+            userName: "",
+            password: "",
+            onSuccess: onConnect,
+            onFailure: doFail
+        }
+
+        console.log("Connect to broker.hivemq.com:8000");
+        // connect the client
+        client.connect(options);
+
+        function doFail(e) {
+            console.log(e);
+        }
+
+        function onConnect() //sự kiên kết nối thành công
+        {
+            console.log("Connect OK");
+            client.subscribe("Toan123456"); //đăng kí kênh 
+        }
+
+        // called when the client loses its connection
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log(responseObject.errorMessage);
+            }
+        }
+
+        // called when a message arrive
+        data1 = []
+        data2 = []
+        data3 = []
+        data4 = []
+        lab = []
+        k = 0
+        function onMessageArrived(message) {
+            console.log(message.destinationName + ":" + message.payloadString)
+            var obj = JSON.parse(message.payloadString)
+            data1.push(obj.Temp)
+            data2.push(obj.Humi)
+            data3.push(obj.Voltage)
+            data4.push(obj.Dust)
+            lab.push(k)
+            draw_line(lab, data1, data2, data3, data4)
+            k++;
+        }
+
+        function public(topic, data) {
+            message = new Paho.MQTT.Message(data);
+            message.destinationName = topic;
+            client.send(message);
+        }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <canvas id="line-chart" width="60%" height="30%"></canvas>
+  </div>
+</body>
+
+</html>
+
+<script>
+  function draw_line(lab,data1,data2,data3,data4) {
+    var chart = new Chart(document.getElementById("line-chart"), {
+      type: 'line',
+      data: {
+        labels: lab,
+        datasets: [{
+          data: data1,
+          label: "Temperature",
+          borderColor: "#3e95cd",
+          fill: false
+        }, {
+          data: data2,
+          label: "Humidity",
+          borderColor: "#8e5ea2",
+          fill: false
+        }, {
+          data: data3,
+          label: "Voltage",
+          borderColor: "#3cba9f",
+          fill: false
+        }, {
+          data: data4,
+          label: "Dust",
+          borderColor: "#e8c3b9",
+          fill: false
+        }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'HYPERLOGY - TEMP - DUST'
+        }
+      }
+    });
+    chart.update()
+  }
+
+  //lab = [1,2,3,4]
+  //data1 = [86,114,106,104]
+  //data2 = [86,100,102,103]
+  //data3 = [86,90,100,102]
+  //data4 = [86,80,98,101]
+  //draw_line(lab,data1,data2,data3,data4)
+</script>
+
