@@ -13,9 +13,11 @@ I. NodeMCU: (Work in Windows) ( Sử dụng Arduino IDE)
 3. Cài đặt bản tin JSON:
 + Arduino IDE -> Sketch -> Include Library -> Library Manager -> Chọn ArduinoJson by Benoit Blanchon.
 
-2.STM32-LCD: (Work in Windows) ( Sử dụng Keil C v5)
-- Kiểm tra device: STM32F103C8
-- Sơ đồ cắm chân:
+II. STM32-LCD: (Work in Windows) ( Sử dụng Keil C v5)
+
+1. Kiểm tra device: STM32F103C8
+
+2. Sơ đồ cắm chân:
 + A9:Tx - MCU:Rx
 + A10:Rx - MCU:Tx
 + A15: DHT11
@@ -24,11 +26,13 @@ I. NodeMCU: (Work in Windows) ( Sử dụng Arduino IDE)
 + B6: I2C_SCL
 + B7: I2C_SDA
 
-3.Nodejs: (Work in Ubuntu) ( Sử dụng VS Code)
-- Cài đặt thư viện:
+III. Nodejs: (Work in Ubuntu) ( Sử dụng VS Code)
+
+1. Cài đặt thư viện:
 + Terminal: npm install <gói sử dụng> ( các gói sử dụng trong file package.json phần dependencies)
 VD: npm install ejs
 + Build code: node + tên chương trình hoặc nodemon + tên chương trình ( nếu đã cài nodemon)
 VD: node app.js hoặc nodemon app.js
-- Chạy file HTML:
+
+2. Chạy file HTML:
 + Chuột phải vào file index.html -> Chọn Copy Path -> Copy link lên google -> Chọn phần biểu đồ -> Ấn F12 kiểm tra bản tin JSON.
