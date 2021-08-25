@@ -1,13 +1,16 @@
 # Hyper_Dush_Temp
 STM32F1, HAL, MQTT, Web
 
-1.NodeMCU: (Work in Windows) ( Sử dụng Arduino IDE)
-- Cài đặt Board ESP:
+I. NodeMCU: (Work in Windows) ( Sử dụng Arduino IDE)
+
+1. Cài đặt Board ESP:
 + Arduino IDE -> Tool -> Board -> Board Manager -> Gõ ESP -> Chọn ESP8266 by ESP Community -> Chọn board phù hợp. Ở đây, mình dùng NodeMCU 0.9(ESP-12 Module).
-- Cài đặt thư viện MQTT:
+
+2. Cài đặt thư viện MQTT:
 + Download thư viện PubSubClient: https://github.com/knolleary/pubsubclient/
 + Arduino IDE -> Sketch -> Include Library -> Add .Zip library -> Thêm thư viện ở trên vào.
-- Cài đặt bản tin JSON:
+
+3. Cài đặt bản tin JSON:
 + Arduino IDE -> Sketch -> Include Library -> Library Manager -> Chọn ArduinoJson by Benoit Blanchon.
 
 2.STM32-LCD: (Work in Windows) ( Sử dụng Keil C v5)
