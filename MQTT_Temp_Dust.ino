@@ -3,8 +3,8 @@
 #include <PubSubClient.h>
 
 // Thông tin về wifi
-#define ssid "BuiVinhBac"
-#define password "12081963"
+#define ssid "*******"
+#define password "*******"
 #define mqtt_server "broker.hivemq.com" 
 const uint16_t mqtt_port = 1883; //Port của CloudMQTT TCP
 WiFiClient espClient;
